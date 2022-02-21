@@ -3,57 +3,59 @@ import { SafeAreaView, Text, TouchableOpacity, FlatList, View } from 'react-nati
 
 const Main = props => {
 
-    var driver = [];
+  var driver = [];
 
-    const [changeState, setChangeState] = useState(0);
+  const [changeState, setChangeState] = useState(0);
 
-    if (typeof(props.route.params) != 'undefined') {
-        driver = props.route.params;
-    }
+  if (typeof(props.route.params) != 'undefined') {
+    driver = props.route.params;
+  }
 
-    return (
-      <SafeAreaView
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: '#fff',
+  return (
+    <SafeAreaView
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+      }}>
+      <View>
+        <Text style={{
+          fontSize: 30,
+          fontWeight: 'bold',
+          color: '#20315f'
         }}>
-        <View>
-          <Text style={{
-            fontSize: 30,
-            fontWeight: 'bold',
-            color: '#20315f'
-          }}>
-            User Data
-          </Text>
-        </View>
+          User Data
+        </Text>
+      </View>
 
-        <FlatList 
-            data = {driver}
-            renderItem = {dataItem => (
-                <View>
-                    <Text>
-                        First Name : {dataItem.item.FirstName}
-                    </Text>
-                    <Text>
-                        Last Name : {dataItem.item.LastName}
-                    </Text>
-                    <Text>
-                        Contact Number : {dataItem.item.Contact}
-                    </Text>
-                </View>
-            )}
-        />
+      <FlatList
+        data={driver}
+        renderItem={dataItem => (
+          <View>
+            <Text>
+              First Name : {dataItem.item.FirstName}
+            </Text>
+            <Text>
+              Last Name : {dataItem.item.LastName}
+            </Text>
+            <Text>
+              Contact Number : {dataItem.item.Contact}
+            </Text>
+          </View>
+        )}
+      />
 
+      <View>
         <TouchableOpacity
-        disabled = {changeState === 9}
-        onPress={() => {setChangeState(driver.length); props.navigation.navigate('Input', driver);}}
-        style={{ marginBottom:50 ,backgroundColor: '#87cefa', padding: 20, borderRadius: 5, flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Text style={{fontWeight: 'bold', fontSize:18, color: '#fff'}}>Add User</Text>
+          disabled={changeState === 9}
+          onPress={() => { setChangeState(driver.length); props.navigation.navigate('Input', driver); }}
+          style={{ marginBottom: 50, backgroundColor: '#87cefa', padding: 20, borderRadius: 5, flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#fff' }}>Add User</Text>
         </TouchableOpacity>
-      </SafeAreaView>
-    );
-  };
+      </View>
+    </SafeAreaView>
+  );
+};
 
-  export default Main;
+export default Main;
