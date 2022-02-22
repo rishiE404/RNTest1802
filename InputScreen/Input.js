@@ -1,28 +1,35 @@
 import React from 'react';
-import { SafeAreaView, Text, TouchableOpacity, TextInput, StyleSheet, Alert } from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  StyleSheet,
+  Alert,
+} from 'react-native';
 
 const Input = props => {
+  const [FirstName, setFirstName] = React.useState('');
+  const [LastName, setLastName] = React.useState('');
+  const [Contact, setContact] = React.useState('');
 
-  const [FirstName, setFirstName] = React.useState("");
-  const [LastName, setLastName] = React.useState("");
-  const [Contact, setContact] = React.useState("");
-
-  var persiData = props.route.params; 
+  var persiData = props.route.params;
 
   const passData = () => {
-
-    if (FirstName === "" || LastName === "" || Contact === "") {
-      Alert.alert("Required",
-        "Please fill al the details...",
-        [{ title: 'ok', onPress: () => { }, style: 'cancel' }])
+    if (FirstName === '' || LastName === '' || Contact === '') {
+      Alert.alert('Required', 'Please fill al the details...', [
+        {title: 'ok', onPress: () => {}, style: 'cancel'},
+      ]);
     } else {
-      var currData = [{
-        FirstName: FirstName,
-        LastName: LastName,
-        Contact: Contact
-      }];
+      var currData = [
+        {
+          FirstName: FirstName,
+          LastName: LastName,
+          Contact: Contact,
+        },
+      ];
 
-      if (typeof(persiData) === 'undefined') {
+      if (typeof persiData === 'undefined') {
         persiData.push(currData);
       } else {
         persiData.push.apply(persiData, currData);
@@ -30,38 +37,47 @@ const Input = props => {
 
       props.navigation.push('Main', persiData);
     }
-    return <Text>Doesn't get Printed</Text>
+    return <Text>Doesn't get Printed</Text>;
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, alignItems: 'center', marginTop: 50 }}>
+    <SafeAreaView style={{flex: 1, alignItems: 'center', marginTop: 50}}>
       <TextInput
         style={styles.input}
         autoFocus={true}
         caretHidden={false}
-        onChangeText={(text) => setFirstName(text)}
+        onChangeText={text => setFirstName(text)}
         value={FirstName}
         placeholder="Enter your first name..."
       />
       <TextInput
         style={styles.input}
         autoFocus={false}
-        onChangeText={(text) => setLastName(text)}
+        onChangeText={text => setLastName(text)}
         value={LastName}
         placeholder="Enter your last name..."
       />
       <TextInput
         style={styles.input}
         autoFocus={false}
-        onChangeText={(text) => setContact(text)}
+        onChangeText={text => setContact(text)}
         value={Contact}
         placeholder="enter your contact number..."
         keyboardType="numeric"
       />
       <TouchableOpacity
         onPress={passData}
-        style={{ marginTop: 20, backgroundColor: '#87cefa', padding: 20, borderRadius: 5, flexDirection: 'row', justifyContent: 'space-between' }}>
-        <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#fff' }}>Save </Text>
+        style={{
+          marginTop: 20,
+          backgroundColor: '#87cefa',
+          padding: 20,
+          borderRadius: 5,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}>
+        <Text style={{fontWeight: 'bold', fontSize: 18, color: '#fff'}}>
+          Save{' '}
+        </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

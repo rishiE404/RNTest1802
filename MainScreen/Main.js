@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   Text,
@@ -62,7 +62,7 @@ const Main = props => {
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
-          <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#fff' }}>
+          <Text style={{fontWeight: 'bold', fontSize: 18, color: '#fff'}}>
             Add User
           </Text>
         </TouchableOpacity>
