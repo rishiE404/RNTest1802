@@ -10,6 +10,7 @@ const Main = props => {
   if (typeof(props.route.params) != 'undefined') {
     driver = props.route.params;
   }
+  // console.log('visible', props.navigation.getParam('item'))
 
   return (
     <SafeAreaView
